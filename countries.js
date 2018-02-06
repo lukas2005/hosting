@@ -9,8 +9,21 @@ function httpGetAsync(theUrl, callback)
     xmlHttp.send(null);
 }
 
-let json;
+let codeIntoName = {};
+let nameIntoCode = {};
 
-httpGetAsync("", function(jsonString) {
+httpGetAsync("https://cdn.rawgit.com/lukas2005/hosting/67a24456/countries.json", function(jsonString) {
 	json = JSON.parse(jsonString);
+	for (let obj in json) {
+		codeIntoName[obj.Code] = obj.Name;
+		nameIntoCode[obj.Name] = obj.Code;
+	}
 });
+
+function getCountryName(code) {
+	return codeIntoName[code];
+}
+
+function getCountryCode(name) {
+	return nameIntoCode[name];
+}
