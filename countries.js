@@ -14,7 +14,8 @@ let nameIntoCode = {};
 
 httpGetAsync("https://cdn.rawgit.com/lukas2005/hosting/67a24456/countries.json", function(jsonString) {
 	json = JSON.parse(jsonString);
-	for (let obj in json) {
+	for (let i in json) {
+		let obj = json[i];
 		codeIntoName[obj.Code] = obj.Name;
 		nameIntoCode[obj.Name] = obj.Code;
 	}
